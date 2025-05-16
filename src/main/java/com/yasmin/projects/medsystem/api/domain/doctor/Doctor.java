@@ -37,5 +37,14 @@ public class Doctor {
     private boolean isActive;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<WorkingHour> workingHour;
+    private List<WorkingHour> workingHours;
+
+    public Doctor(RequestDoctorInfoDTO doctorInfoDTO, List<Speciality> specialities, List<WorkingHour> workingHours) {
+        this.name = doctorInfoDTO.name();
+        this.crm = doctorInfoDTO.crm();
+        this.state = doctorInfoDTO.state();
+        this.email = doctorInfoDTO.email();
+        this.specialities = specialities;
+        this.workingHours = workingHours;
+    }
 }

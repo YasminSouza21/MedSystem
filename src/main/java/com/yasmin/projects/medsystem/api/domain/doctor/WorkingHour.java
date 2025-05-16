@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -32,9 +33,16 @@ public class WorkingHour {
 
     private long hoursPerDay;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+
+    public WorkingHour(LocalDate dayOfTheMount, LocalTime startHour, LocalTime endHour) {
+        this.dayOfTheMount = dayOfTheMount;
+        this.startHour = startHour;
+        this.endHour = endHour;
+    }
 
     @PrePersist
     @PreUpdate
@@ -42,7 +50,8 @@ public class WorkingHour {
         this.hoursPerDay = Duration.between(startHour, endHour).toHours();
 
         DayOfWeek getDay = dayOfTheMount.getDayOfWeek();
-        this.dayOfTheWeek = DaysOfTheWeek.valueOf(getDay.name());
+        System.out.println(getDay);
+        this.dayOfTheWeek = DaysOfTheWeek.getDay(getDay);
     }
 
 }

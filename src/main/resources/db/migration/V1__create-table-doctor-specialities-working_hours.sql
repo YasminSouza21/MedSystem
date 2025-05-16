@@ -38,7 +38,7 @@ CREATE TABLE working_hours(
     start_hour time not null,
     end_hour time not null,
     hours_per_day int not null,
-    doctor_id integer,
+    doctor_id integer ,
 
     FOREIGN KEY (doctor_id) REFERENCES doctors(id)
 );
