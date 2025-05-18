@@ -50,7 +50,6 @@ public class WorkingHour {
         this.hoursPerDay = Duration.between(startHour, endHour).toHours();
 
         DayOfWeek getDay = dayOfTheMount.getDayOfWeek();
-        System.out.println(getDay);
         this.dayOfTheWeek = DaysOfTheWeek.getDay(getDay);
     }
 

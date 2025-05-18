@@ -20,10 +20,12 @@ public class Doctor {
 
     private String name;
 
+    @Column(unique = true)
     private String crm;
 
     private String state;
 
+    @Column(unique = true)
     private String email;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -46,5 +48,26 @@ public class Doctor {
         this.email = doctorInfoDTO.email();
         this.specialities = specialities;
         this.workingHours = workingHours;
+        this.isActive = true;
+    }
+
+    public Doctor update(RequestUpdateDoctorDTO doctorInfoDTO){
+        if(doctorInfoDTO.name() != null){
+            this.name = doctorInfoDTO.name();
+        }
+
+        if(doctorInfoDTO.crm() != null){
+            this.crm = doctorInfoDTO.crm();
+        }
+
+        if(doctorInfoDTO.state() != null){
+            this.state = doctorInfoDTO.state();
+        }
+
+        if(doctorInfoDTO.email() != null){
+            this.email = doctorInfoDTO.email();
+        }
+
+        return this;
     }
 }

@@ -17,13 +17,8 @@ public class SpecialityService {
     }
 
     public List<Speciality> getSpecialities(List<String> specialitiesNames) {
-        if (!specialitiesNames.isEmpty()) {
-            List<Speciality> specialitiesExisting = specialityRepository.findAll();
-
-            return specialitiesExisting.stream().filter(s -> specialitiesNames.stream().anyMatch(name -> name.equals(s.getName().name()))).toList();
-        }
-
-        throw new NullPointerException("List specialities is empty");
+        List<Speciality> specialitiesExisting = specialityRepository.findAll();
+        return specialitiesExisting.stream().filter(s -> specialitiesNames.stream().anyMatch(name -> name.equals(s.getName().name()))).toList();
     }
 }
 

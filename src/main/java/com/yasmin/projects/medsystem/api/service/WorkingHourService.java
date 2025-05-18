@@ -13,15 +13,11 @@ public class WorkingHourService {
 
     private final WorkingHourRepository workingHourRepository;
 
-    public WorkingHourService(WorkingHourRepository workingHourRepository){
+    public WorkingHourService(WorkingHourRepository workingHourRepository) {
         this.workingHourRepository = workingHourRepository;
     }
 
-    public List<WorkingHour> saveWorkingHours(List<RequestDoctorInfoDTO.RequestWorkingHourDTO> workingHourDTO){
-        if(!workingHourDTO.isEmpty()){
-            return workingHourDTO.stream().map(w -> new WorkingHour(w.dayOfTheMount(), w.startHour(), w.endHour())).toList();
-        }
-
-        throw new NullPointerException("List working hour is empty");
+    public List<WorkingHour> saveWorkingHours(List<RequestDoctorInfoDTO.RequestWorkingHourDTO> workingHourDTO) {
+        return workingHourDTO.stream().map(w -> new WorkingHour(w.dayOfTheMount(), w.startHour(), w.endHour())).toList();
     }
 }

@@ -1,7 +1,10 @@
 package com.yasmin.projects.medsystem.api.domain.doctor;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.yasmin.projects.medsystem.api.annotations.CrmUnique;
+import com.yasmin.projects.medsystem.api.annotations.EmailUnique;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -12,14 +15,18 @@ public record RequestDoctorInfoDTO(
         @NotBlank
         String name,
         @NotBlank
+        @CrmUnique
         String crm,
         @NotBlank
         String state,
         @NotBlank
+        @EmailUnique
         String email,
         @NotNull
+        @NotEmpty
         List<String> specialities,
         @NotNull
+        @NotEmpty
         @JsonAlias("working_hours")
         List<RequestWorkingHourDTO> workingHours
         ) {
