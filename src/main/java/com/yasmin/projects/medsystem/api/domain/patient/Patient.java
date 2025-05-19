@@ -1,10 +1,13 @@
 package com.yasmin.projects.medsystem.api.domain.patient;
 
+import com.yasmin.projects.medsystem.api.domain.appointment.Appointment;
 import com.yasmin.projects.medsystem.api.domain.patient.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "patients")
@@ -26,6 +29,9 @@ public class Patient {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "addresses_id")
     private Address address;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
 
     public Patient(RequestPatientInfoDTO patientInfoDTO, Address address) {
         this.name = patientInfoDTO.name();

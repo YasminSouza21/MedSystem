@@ -1,5 +1,6 @@
 package com.yasmin.projects.medsystem.api.domain.doctor;
 
+import com.yasmin.projects.medsystem.api.domain.appointment.Appointment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,6 +41,9 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<WorkingHour> workingHours;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Appointment> appointments;
 
     public Doctor(RequestDoctorInfoDTO doctorInfoDTO, List<Speciality> specialities, List<WorkingHour> workingHours) {
         this.name = doctorInfoDTO.name();
