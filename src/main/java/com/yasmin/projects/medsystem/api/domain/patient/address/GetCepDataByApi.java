@@ -1,4 +1,4 @@
-package com.yasmin.projects.medsystem.api.domain.patient;
+package com.yasmin.projects.medsystem.api.domain.patient.address;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +12,7 @@ public class GetCepDataByApi {
         this.restTemplate = restTemplate;
     }
 
-    public CepDataDTO getData(String cep){
-        return restTemplate.getForObject("https://viacep.com.br/ws/"+ cep + "/json/", CepDataDTO.class);
+    public CepDataByApiDTO getData(String cep){
+        return restTemplate.getForObject("https://viacep.com.br/ws/"+ cep + "/json/", CepDataByApiDTO.class);
     }
 }

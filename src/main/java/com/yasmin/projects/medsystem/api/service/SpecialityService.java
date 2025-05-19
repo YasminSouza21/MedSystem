@@ -2,7 +2,6 @@ package com.yasmin.projects.medsystem.api.service;
 
 import com.yasmin.projects.medsystem.api.domain.doctor.Speciality;
 import com.yasmin.projects.medsystem.api.repository.SpecialityRepository;
-import jakarta.validation.ValidationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

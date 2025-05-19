@@ -1,8 +1,8 @@
-package com.yasmin.projects.medsystem.api.domain.patient;
+package com.yasmin.projects.medsystem.api.domain.patient.address;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
-public record CepDataDTO(
+public record CepDataByApiDTO(
         @JsonAlias("logradouro")
         String street,
         @JsonAlias("bairro")
