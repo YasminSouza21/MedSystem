@@ -2,7 +2,7 @@
 **Um sistema de gestão de consulta médica** feito com **Java** e **Spring**
 
 ## Descrição
-Essa aplicação visa em um sistema para auxiliar uma clínica médica onde tem como objetivo gerenciar consultas, gerenciar cadastro de pacientes e médicos,
+Essa aplicação visa em um sistema para auxiliar uma clínica médica onde tem como objetivo gerenciar consultas, cadastro de pacientes e médicos,
 então é uma aplicação que contém uma api rest que vai receber requisições https para os endpoints específicados no sistema para o gerenciamento dos dados da clínica. 
 
 
