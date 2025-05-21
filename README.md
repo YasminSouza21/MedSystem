@@ -3,7 +3,7 @@
 
 ## Descrição
 Essa aplicação visa em um sistema para auxiliar uma clínica médica onde tem como objetivo gerenciar consultas, gerenciar cadastro de pacientes e médicos,
-então é uma aplicação que contém um api que vai receber requisições https para os endpoints específicados no sistema para o gerenciamento dos dados da clínica. 
+então é uma aplicação que contém uma api rest que vai receber requisições https para os endpoints específicados no sistema para o gerenciamento dos dados da clínica. 
 
 
 ## Funcionalidades do Sistema
