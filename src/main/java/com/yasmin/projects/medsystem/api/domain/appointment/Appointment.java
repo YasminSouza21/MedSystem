@@ -31,4 +31,31 @@ public class Appointment {
 
     @Embedded
     private ResultOfTheAppointment result;
+
+    public Appointment(LocalDateTime dateTime, Patient patient, Doctor doctor) {
+        this.dateTime = dateTime;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.result = new ResultOfTheAppointment("", "");
+    }
+
+    public Appointment updateResult(RequestResultAppointmentDTO resultAppointmentDTO){
+        if(!resultAppointmentDTO.diagnostic().isBlank()){
+            result.setDiagnostic(resultAppointmentDTO.diagnostic());
+        }
+
+        if(!resultAppointmentDTO.summary().isBlank()){
+            result.setSummary(resultAppointmentDTO.summary());
+        }
+
+        return this;
+    }
+
+    public Appointment updateDateTime(LocalDateTime dateTime){
+        if(dateTime != null){
+            this.dateTime = dateTime;
+        }
+
+        return this;
+    }
 }

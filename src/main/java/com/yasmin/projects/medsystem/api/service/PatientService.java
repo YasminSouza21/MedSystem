@@ -55,7 +55,7 @@ public class PatientService {
         }
 
         Patient patient = patientRepository.getReferenceById(updatePatientDTO.id());
-        return new ResponsePatientInfoDTO(patientRepository.save(patient));
+        return new ResponsePatientInfoDTO(patientRepository.save(patient.updateData(updatePatientDTO)));
     }
 
     public void delete(Integer id) {
@@ -63,5 +63,9 @@ public class PatientService {
             throw new EntityNotFoundException("Paciente não encontrado!");
         }
         patientRepository.deleteById(id);
+    }
+
+    public Patient findById(Integer id){
+        return patientRepository.getReferenceById(id);
     }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("patient")
+@RequestMapping("patients")
 public class PatientController {
 
     private final PatientService patientService;

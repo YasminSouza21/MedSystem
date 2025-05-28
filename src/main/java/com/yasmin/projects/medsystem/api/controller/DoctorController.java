@@ -1,10 +1,10 @@
 package com.yasmin.projects.medsystem.api.controller;
 
-import com.yasmin.projects.medsystem.api.domain.doctor.RequestDoctorInfoDTO;
-import com.yasmin.projects.medsystem.api.domain.doctor.RequestUpdateDoctorDTO;
-import com.yasmin.projects.medsystem.api.domain.doctor.ResponseDoctorInfoDTO;
+import com.yasmin.projects.medsystem.api.domain.doctor.*;
 import com.yasmin.projects.medsystem.api.service.DoctorService;
+import com.yasmin.projects.medsystem.api.service.SpecialityService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Limit;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -14,15 +14,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping("doctor")
+@RequestMapping("doctors")
 public class DoctorController {
 
     private final DoctorService doctorService;
+    private final SpecialityService specialityService;
 
-    public DoctorController(DoctorService doctorService) {
+    public DoctorController(DoctorService doctorService, SpecialityService specialityService) {
         this.doctorService = doctorService;
+        this.specialityService = specialityService;
     }
 
     @GetMapping
@@ -56,5 +59,15 @@ public class DoctorController {
     public ResponseEntity<ResponseDoctorInfoDTO> deleteDoctor(@PathVariable Integer id){
         doctorService.deleteDoctor(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/specialities")
+    public ResponseEntity<List<ResponseSpecialities>> getAllSpecialities(){
+        return ResponseEntity.ok(specialityService.getAll());
+    }
+
+    @GetMapping("/specialities/{specialityName}")
+    public ResponseEntity<List<ResponseDoctorInfoDTO>> getAllSpecialities(@PathVariable String specialityName){
+        return ResponseEntity.ok(specialityService.getAllDoctorBySpecialities(specialityName));
     }
 }

@@ -1,10 +1,12 @@
 package com.yasmin.projects.medsystem.api.domain.doctor;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.yasmin.projects.medsystem.api.domain.appointment.Appointment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 public class Doctor {
 
     @Id
@@ -29,7 +32,7 @@ public class Doctor {
     @Column(unique = true)
     private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "doctors_specialities",
             joinColumns = @JoinColumn(name = "doctor_id"),
@@ -54,6 +57,7 @@ public class Doctor {
         this.workingHours = workingHours;
         this.isActive = true;
     }
+
 
     public Doctor update(RequestUpdateDoctorDTO doctorInfoDTO){
         if(doctorInfoDTO.name() != null){

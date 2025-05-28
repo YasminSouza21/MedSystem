@@ -45,7 +45,7 @@ public class DoctorService {
     }
 
     public ResponseDoctorInfoDTO updateDoctor(RequestUpdateDoctorDTO doctorInfoDTO, Integer id) {
-        if(!doctorRepository.existsById(id)){
+        if (!doctorRepository.existsById(id)) {
             throw new EntityNotFoundException("Doutor não encontrado!!");
         }
         Doctor doctor = doctorRepository.getReferenceById(id);
@@ -53,9 +53,16 @@ public class DoctorService {
     }
 
     public void deleteDoctor(Integer id) {
-        if(!doctorRepository.existsById(id)){
+        if (!doctorRepository.existsById(id)) {
             throw new EntityNotFoundException("Doutor não encontrado!!");
         }
         doctorRepository.deleteById(id);
+    }
+
+    public Doctor findById(Integer id) {
+        if (!doctorRepository.existsById(id)) {
+            throw new EntityNotFoundException("Doutor não encontrado!!");
+        }
+        return doctorRepository.getReferenceById(id);
     }
 }

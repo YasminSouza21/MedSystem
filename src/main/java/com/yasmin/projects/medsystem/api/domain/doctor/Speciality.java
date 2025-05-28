@@ -1,6 +1,7 @@
 package com.yasmin.projects.medsystem.api.domain.doctor;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

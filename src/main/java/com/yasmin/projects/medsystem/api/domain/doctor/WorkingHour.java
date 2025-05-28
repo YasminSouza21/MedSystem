@@ -1,5 +1,6 @@
 package com.yasmin.projects.medsystem.api.domain.doctor;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class WorkingHour {
     @Setter
     @ManyToOne
     @JoinColumn(name = "doctor_id")
+    @JsonBackReference
     private Doctor doctor;
 
     public WorkingHour(LocalDate dayOfTheMount, LocalTime startHour, LocalTime endHour) {
@@ -46,7 +48,7 @@ public class WorkingHour {
 
     @PrePersist
     @PreUpdate
-    private void calculateHourPerDayAndSettingDayofTheWeek(){
+    private void calculateHourPerDayAndSettingDayOfTheWeek(){
         this.hoursPerDay = Duration.between(startHour, endHour).toHours();
 
         DayOfWeek getDay = dayOfTheMount.getDayOfWeek();

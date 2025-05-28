@@ -1,6 +1,7 @@
 package com.yasmin.projects.medsystem.api.domain.patient;
 
 import com.yasmin.projects.medsystem.api.domain.appointment.Appointment;
+import com.yasmin.projects.medsystem.api.domain.appointment.ResponseAppointmentInfoDTO;
 import com.yasmin.projects.medsystem.api.domain.patient.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -52,9 +53,6 @@ public class Patient {
         }
         if (updatePatientDTO.email() != null) {
             this.email = updatePatientDTO.email();
-        }
-        if (updatePatientDTO.cpf() != null) {
-            this.cpf = updatePatientDTO.cpf();
         }
         if (updatePatientDTO.weight() != null) {
             this.weight = updatePatientDTO.weight();

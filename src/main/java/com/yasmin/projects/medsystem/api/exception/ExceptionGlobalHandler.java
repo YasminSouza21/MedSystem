@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,17 @@ public class ExceptionGlobalHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Error> entityNotFoundException(EntityNotFoundException e){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Error(e.getMessage(), HttpStatus.NOT_FOUND.value(), LocalDateTime.now()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Error(e.getMessage(), HttpStatus.NOT_FOUND.value()));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Error> illegalArgumentException(IllegalArgumentException e){
+        return ResponseEntity.badRequest().body(new Error(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+    }
+
+    @ExceptionHandler(AlreadyExistsAnAppointmentBetweenThisOneHour.class)
+    public ResponseEntity<Error> alreadyExistsAppointmentBetweenThisOneHourException(AlreadyExistsAnAppointmentBetweenThisOneHour e){
+        return ResponseEntity.badRequest().body(new Error(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
     }
 
     public record FieldErrors(
@@ -35,5 +46,9 @@ public class ExceptionGlobalHandler {
             String message,
             Integer status,
             LocalDateTime timestamp
-    ){}
+    ){
+        public Error(String message, Integer statusCode){
+            this(message, statusCode, LocalDateTime.now());
+        }
+    }
 }

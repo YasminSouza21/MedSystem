@@ -1,4 +1,11 @@
 package com.yasmin.projects.medsystem.api.domain.appointment;
 
-public class RequestResultAppointmentDTO {
+import jakarta.validation.constraints.NotBlank;
+
+public record RequestResultAppointmentDTO(
+        @NotBlank
+        String diagnostic,
+        @NotBlank
+        String summary
+) {
 }

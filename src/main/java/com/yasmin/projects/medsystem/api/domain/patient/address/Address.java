@@ -35,6 +35,7 @@ public class Address {
         this.state = data.state();
     }
 
+
     public Address update(Address addressNew){
         this.cep = addressNew.cep;
         this.street = addressNew.street;

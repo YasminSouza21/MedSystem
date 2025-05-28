@@ -3,10 +3,10 @@ package com.yasmin.projects.medsystem.api.domain.doctor;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.yasmin.projects.medsystem.api.annotations.CrmUnique;
 import com.yasmin.projects.medsystem.api.annotations.EmailUnique;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+import lombok.experimental.FieldDefaults;
+import lombok.experimental.FieldNameConstants;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -30,12 +30,13 @@ public record RequestDoctorInfoDTO(
         @NotNull
         @NotEmpty
         @JsonAlias("working_hours")
+        @Valid
         List<RequestWorkingHourDTO> workingHours
 ) {
-
-    public record RequestWorkingHourDTO(
+        public record  RequestWorkingHourDTO(
             @NotNull
             @JsonAlias("day_of_the_mount")
+            @Future
             LocalDate dayOfTheMount,
             @NotNull
             @JsonAlias("start_hour")
